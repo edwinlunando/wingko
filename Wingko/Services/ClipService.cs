@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SQLite;
+﻿using SQLite;
+using Wingko.Models;
 
 namespace Wingko.Services
 {
@@ -18,7 +13,14 @@ namespace Wingko.Services
             _database = new SQLiteConnection("wingko.db");
         }
 
-
+        public Clip SaveNewClip(Clip.ClipType type, string content)
+        {
+            Clip clip = new Clip();
+            clip.Type = (int)type;
+            clip.Content = content;
+            _database.Insert(clip);
+            return clip;
+        }
 
     }
 }
